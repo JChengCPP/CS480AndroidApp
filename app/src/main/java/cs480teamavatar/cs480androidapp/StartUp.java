@@ -17,6 +17,7 @@ public class StartUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StartUp.this, LoginPage.class);
+                startActivity(intent);
             }
         });
     }
