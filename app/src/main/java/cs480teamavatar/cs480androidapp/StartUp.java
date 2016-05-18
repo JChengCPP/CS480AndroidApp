@@ -12,11 +12,20 @@ public class StartUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_u);
-        Button login = (Button) findViewById(R.id.login_button);
+        Button login = (Button) findViewById(R.id.login2_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(StartUp.this, LoginPage.class);
+                startActivity(intent);
+            }
+        });
+
+        Button register = (Button) findViewById(R.id.reg1_button);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(StartUp.this, RegisterPage.class);
                 startActivity(intent);
             }
         });

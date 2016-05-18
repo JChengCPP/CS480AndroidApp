@@ -1,29 +1,41 @@
 package cs480teamavatar.cs480androidapp;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.view.View;
+import android.widget.EditText;
+import android.os.AsyncTask;
 import java.sql.*;
 
-public class LoginPage extends AppCompatActivity {
+
+public class RegisterPage extends AppCompatActivity {
     private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb_test";
     private static final String USER = "TeamAvatar";
     private static final String PASS = "Ie5Jaxae";
+    private static RadioGroup radioGroup;
+    private static RadioButton radioButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_page);
+        setContentView(R.layout.activity_register_page);
     }
 
     public void onClick(View view) {
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        int selected_id = radioGroup.getCheckedRadioButtonId();
+        radioButton = (RadioButton) findViewById(selected_id);
+        System.out.println(radioButton.getText());
         String username = ((EditText) findViewById(R.id.reg_email_text)).getText().toString();
         String password = ((EditText) findViewById(R.id.reg_password_text)).getText().toString();
-        String[] storage = new String[2];
+        String radio = radioButton.getText().toString();
+        System.out.println(radio);
+        String[] storage = new String[3];
         storage[0] = username;
         storage[1] = password;
+        storage[2] = radio;
         new RegisterUser().execute(storage);
 
     }
@@ -43,12 +55,22 @@ public class LoginPage extends AppCompatActivity {
                 stmt = conn.createStatement();
                 String sql;
                 System.out.println("Testing tutor button");
-                System.out.println("Tutor button works!");
-                System.out.println("Testing sql insert command");
-                sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
-                        "VALUES ('" + params[1] + "', '" + params[0] + "')";
-                stmt.executeUpdate(sql);
-                System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
+                if (params[2].equals("Tutor")) {
+                    System.out.println("Tutor button works!");
+                    System.out.println("Testing sql insert command");
+                    sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
+                            "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                    stmt.executeUpdate(sql);
+                    System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
+                }
+                else if (params[2].equals("Student")) {
+                    System.out.println("Tutor button works!");
+                    System.out.println("Testing sql insert command");
+                    sql = "INSERT INTO student (studentPassword, studentEmail) " +
+                            "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                    stmt.executeUpdate(sql);
+                    System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
+                }
                 stmt = conn.createStatement();
                 stmt.close();
                 conn.close();
@@ -61,3 +83,4 @@ public class LoginPage extends AppCompatActivity {
         }
     }
 }
+
