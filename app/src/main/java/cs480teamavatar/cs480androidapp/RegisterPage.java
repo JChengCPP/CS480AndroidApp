@@ -1,5 +1,6 @@
 package cs480teamavatar.cs480androidapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -7,6 +8,7 @@ import android.widget.RadioGroup;
 import android.view.View;
 import android.widget.EditText;
 import android.os.AsyncTask;
+import android.widget.TextView;
 import java.sql.*;
 
 
@@ -16,6 +18,7 @@ public class RegisterPage extends AppCompatActivity {
     private static final String PASS = "Ie5Jaxae";
     private static RadioGroup radioGroup;
     private static RadioButton radioButton;
+    private TextView textout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +30,15 @@ public class RegisterPage extends AppCompatActivity {
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         int selected_id = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(selected_id);
-        System.out.println(radioButton.getText());
         String username = ((EditText) findViewById(R.id.reg_email_text)).getText().toString();
         String password = ((EditText) findViewById(R.id.reg_password_text)).getText().toString();
         String radio = radioButton.getText().toString();
-        System.out.println(radio);
         String[] storage = new String[3];
         storage[0] = username;
         storage[1] = password;
         storage[2] = radio;
+        textout = (TextView) findViewById(R.id.register_text_view);
         new RegisterUser().execute(storage);
-
     }
 
     private class RegisterUser extends AsyncTask<String, Integer, Integer> {
@@ -46,30 +47,40 @@ public class RegisterPage extends AppCompatActivity {
             Connection conn = null;
             Statement stmt = null;
             try {
-                System.out.println("Registering driver");
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                System.out.println("Registered driver");
-                System.out.println("Accessing database");
                 conn = DriverManager.getConnection(URL, USER, PASS);
-                System.out.println("Inside database!");
                 stmt = conn.createStatement();
-                String sql;
-                System.out.println("Testing tutor button");
+                ResultSet rs;
+                String sql, queryCheck;
                 if (params[2].equals("Tutor")) {
-                    System.out.println("Tutor button works!");
-                    System.out.println("Testing sql insert command");
-                    sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
-                            "VALUES ('" + params[1] + "', '" + params[0] + "')";
-                    stmt.executeUpdate(sql);
-                    System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
+                    queryCheck = "SELECT * FROM tutor WHERE tutorEmail = '" +
+                            params[0] + "'";
+                    rs = stmt.executeQuery(queryCheck);
+                    if (!rs.next()) {
+                        rs.close();
+                        sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
+                                "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                        stmt.executeUpdate(sql);
+                    }
+                    else {
+                        rs.close();
+                        return -1;
+                    }
                 }
                 else if (params[2].equals("Student")) {
-                    System.out.println("Tutor button works!");
-                    System.out.println("Testing sql insert command");
-                    sql = "INSERT INTO student (studentPassword, studentEmail) " +
-                            "VALUES ('" + params[1] + "', '" + params[0] + "')";
-                    stmt.executeUpdate(sql);
-                    System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
+                    queryCheck = "SELECT * FROM student WHERE studentEmail = '" +
+                            params[0] + "'";
+                    rs = stmt.executeQuery(queryCheck);
+                    if (!rs.next()) {
+                        rs.close();
+                        sql = "INSERT INTO student (studentPassword, studentEmail) " +
+                                "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                        stmt.executeUpdate(sql);
+                    }
+                    else {
+                        rs.close();
+                        return -1;
+                    }
                 }
                 stmt = conn.createStatement();
                 stmt.close();
@@ -80,6 +91,15 @@ public class RegisterPage extends AppCompatActivity {
                 e.printStackTrace();
             }
             return 0;
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            if (result == 0) {
+                startActivity(new Intent(RegisterPage.this, StartUp.class));
+            }
+            else
+                textout.setText("Username already exists.");
         }
     }
 }

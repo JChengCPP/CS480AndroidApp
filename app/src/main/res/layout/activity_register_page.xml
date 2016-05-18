@@ -61,4 +61,13 @@
             android:layout_alignLeft="@+id/student_radio_button"
             android:layout_alignStart="@+id/student_radio_button" />
     </RadioGroup>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:id="@+id/register_text_view"
+        android:layout_below="@+id/reg2_button"
+        android:layout_alignLeft="@+id/reg2_button"
+        android:layout_alignStart="@+id/reg2_button"
+        android:textAlignment="center" />
 </RelativeLayout>

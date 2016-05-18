@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.view.View;
+import android.content.Intent;
 import java.sql.*;
 
 public class LoginPage extends AppCompatActivity {
@@ -34,21 +35,12 @@ public class LoginPage extends AppCompatActivity {
             Connection conn = null;
             Statement stmt = null;
             try {
-                System.out.println("Registering driver");
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                System.out.println("Registered driver");
-                System.out.println("Accessing database");
                 conn = DriverManager.getConnection(URL, USER, PASS);
-                System.out.println("Inside database!");
                 stmt = conn.createStatement();
                 String sql;
-                System.out.println("Testing tutor button");
-                System.out.println("Tutor button works!");
-                System.out.println("Testing sql insert command");
-                sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
-                        "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                sql = "Select  FROM tutor, student WHERE ";
                 stmt.executeUpdate(sql);
-                System.out.println("YESSSSS INSERT COMMAND DIDNT FAIL MEEE");
                 stmt = conn.createStatement();
                 stmt.close();
                 conn.close();
@@ -58,6 +50,11 @@ public class LoginPage extends AppCompatActivity {
                 e.printStackTrace();
             }
             return 0;
+        }
+
+        @Override
+        protected void onPostExecute(Integer rawr) {
+            startActivity(new Intent(LoginPage.this, StartUp.class));
         }
     }
 }
