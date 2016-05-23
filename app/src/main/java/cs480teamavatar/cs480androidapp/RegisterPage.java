@@ -18,7 +18,10 @@ public class RegisterPage extends AppCompatActivity {
     private static final String PASS = "Ie5Jaxae";
     private static RadioGroup radioGroup;
     private static RadioButton radioButton;
-    private TextView textout;
+    private TextView textOut;
+    private EditText email;
+    private EditText pass;
+    private EditText n;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +30,22 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     public void onClick(View view) {
+        email = (EditText) findViewById(R.id.reg_email_text);
+        pass = (EditText) findViewById((R.id.reg_password_text));
+        n = (EditText) findViewById(R.id.reg_name_text);
         radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         int selected_id = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(selected_id);
-        String username = ((EditText) findViewById(R.id.reg_email_text)).getText().toString();
-        String password = ((EditText) findViewById(R.id.reg_password_text)).getText().toString();
+        String username = email.getText().toString();
+        String password = pass.getText().toString();
+        String name = n.getText().toString();
         String radio = radioButton.getText().toString();
-        String[] storage = new String[3];
+        String[] storage = new String[4];
         storage[0] = username;
         storage[1] = password;
         storage[2] = radio;
-        textout = (TextView) findViewById(R.id.register_text_view);
+        storage[3] = name;
+        textOut = (TextView) findViewById(R.id.register_text_view);
         new RegisterUser().execute(storage);
     }
 
@@ -52,37 +60,28 @@ public class RegisterPage extends AppCompatActivity {
                 stmt = conn.createStatement();
                 ResultSet rs;
                 String sql, queryCheck;
-                if (params[2].equals("Tutor")) {
-                    queryCheck = "SELECT * FROM tutor WHERE tutorEmail = '" +
-                            params[0] + "'";
-                    rs = stmt.executeQuery(queryCheck);
-                    if (!rs.next()) {
-                        rs.close();
-                        sql = "INSERT INTO tutor (tutorPassword, tutorEmail) " +
-                                "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                queryCheck = "SELECT * FROM tutor, student WHERE tutorEmail = '" +
+                        params[0] + "' OR studentEmail = '" + params[0] + "'";
+                rs = stmt.executeQuery(queryCheck);
+                if (!rs.next()) {
+                    rs.close();
+                    if (params[2].equals("Tutor")) {
+                        sql = "INSERT INTO tutor (tutorPassword, tutorName, tutorEmail) " +
+                                "VALUES ('" + params[1] + "', '" + params[3] + "', '"
+                                + params[0] + "')";
                         stmt.executeUpdate(sql);
                     }
-                    else {
-                        rs.close();
-                        return -1;
-                    }
-                }
-                else if (params[2].equals("Student")) {
-                    queryCheck = "SELECT * FROM student WHERE studentEmail = '" +
-                            params[0] + "'";
-                    rs = stmt.executeQuery(queryCheck);
-                    if (!rs.next()) {
-                        rs.close();
-                        sql = "INSERT INTO student (studentPassword, studentEmail) " +
-                                "VALUES ('" + params[1] + "', '" + params[0] + "')";
+                    else if (params[2].equals("Student")) {
+                        sql = "INSERT INTO student (studentPassWord, studentName, " +
+                                "studentEmail) VALUES ('" + params[1] + "', '" +
+                                params[3] + "', '" + params[0] + "')";
                         stmt.executeUpdate(sql);
                     }
-                    else {
-                        rs.close();
-                        return -1;
-                    }
                 }
-                stmt = conn.createStatement();
+                else {
+                    rs.close();
+                    return -1;
+                }
                 stmt.close();
                 conn.close();
             } catch (SQLException se) {
@@ -98,8 +97,12 @@ public class RegisterPage extends AppCompatActivity {
             if (result == 0) {
                 startActivity(new Intent(RegisterPage.this, StartUp.class));
             }
-            else
-                textout.setText("Username already exists.");
+            else {
+                email.setText("");
+                pass.setText("");
+                n.setText("");
+                textOut.setText("Email already exists.");
+            }
         }
     }
 }
