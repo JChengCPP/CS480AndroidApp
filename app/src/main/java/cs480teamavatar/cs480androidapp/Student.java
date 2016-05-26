@@ -38,6 +38,42 @@ public class Student implements Parcelable{
         this.s_subject = in.readString();
     }
 
+    public int getID() {
+        return s_id;
+    }
+
+    public String getName() {
+        return s_name;
+    }
+
+    public String getEmail() {
+        return s_email;
+    }
+
+    public String getAddress() {
+        return s_address;
+    }
+
+    public String getSubject() {
+        return s_subject;
+    }
+
+    public void setName(String name) {
+        s_name = name;
+    }
+
+    public void setEmail(String email) {
+        s_email = email;
+    }
+
+    public void setAddress(String address) {
+        s_address = address;
+    }
+
+    public void setSubject(String subject) {
+        s_subject = subject;
+    }
+
     public static final Parcelable.Creator<Student> CREATOR = new Parcelable.Creator<Student>() {
 
         @Override

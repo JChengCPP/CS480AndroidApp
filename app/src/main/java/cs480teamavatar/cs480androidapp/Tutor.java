@@ -51,6 +51,74 @@ public class Tutor implements Parcelable {
         this.t_hours = in.readInt();
     }
 
+    public int getID() {
+        return t_id;
+    }
+
+    public String getName() {
+        return t_name;
+    }
+
+    public String getEmail() {
+        return t_email;
+    }
+
+    public String getSubject() {
+        return t_subject;
+    }
+
+    public String getAddress() {
+        return t_address;
+    }
+
+    public String getDescription() {
+        return t_description;
+    }
+
+    public double getRate() {
+        return t_rate;
+    }
+
+    public String getRateString() {
+        return "" + t_rate + "";
+    }
+
+    public String getHoursString() {
+        return "" + t_hours + "";
+    }
+
+    public int getHours() {
+        return t_hours;
+    }
+
+    public void setName(String name) {
+        t_name = name;
+    }
+
+    public void setEmail(String email) {
+        t_email = email;
+    }
+
+    public void setSubject(String subject) {
+        t_subject = subject;
+    }
+
+    public void setAddress(String address) {
+        t_address = address;
+    }
+
+    public void setDescription(String description) {
+        t_description = description;
+    }
+
+    public void setRate(double rate) {
+        t_rate = rate;
+    }
+
+    public void setHours(int hour) {
+        t_hours = hour;
+    }
+
     public static final Parcelable.Creator<Tutor> CREATOR = new Parcelable.Creator<Tutor>() {
 
         @Override

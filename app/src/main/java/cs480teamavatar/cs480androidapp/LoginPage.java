@@ -17,6 +17,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText pass;
     private TextView textOut;
     private Intent intent;
+    private Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,52 +46,39 @@ public class LoginPage extends AppCompatActivity {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 conn = DriverManager.getConnection(URL, USER, PASS);
                 stmt = conn.createStatement();
-                String queryCheck = "SELECT * FROM student WHERE (studentEmail = '" + params[0] +
-                        "' AND studentPassword = '" + params[1] + "')";
+                String queryCheck = "SELECT * FROM student WHERE studentEmail = '" + params[0]
+                        + "' AND studentPassword = '" + params[1] + "'";
                 ResultSet rs = stmt.executeQuery(queryCheck);
-                while (rs.next()){
-                    System.out.println(rs.getInt("studentID") + " " + params[0] + " " + params[1]);
-                }
-                /*String queryCheck;
-                ResultSet rs1, rs2;
-                queryCheck = "SELECT * FROM student WHERE studentEmail = '" +
-                        params[0] + "' AND studentPassWord = '" + params[1] + "'";
-                rs1 = stmt.executeQuery(queryCheck);
-                if (!rs1.next()) {
-                    System.out.println("In rs statement for some reason");
-                    /*
+                if (rs.next()) {
                     Student student = new Student(rs.getInt("studentID"),
                             rs.getString("studentName"), rs.getString("studentEmail"),
-                            rs.getString("studentAddress"), rs.getString("studentSubject"));
+                            rs.getString("studentAddress"), rs.getString("studentSubjects"));
+                    intent = new Intent(LoginPage.this, MainPage.class);
+                    extras = new Bundle();
+                    extras.putString("packtype", "student");
+                    extras.putParcelable("studentPackage", student);
+                    intent.putExtras(extras);
                     rs.close();
-                    intent = new Intent(LoginPage.this, MainPage.class);
-                    intent.putExtra("studentParcelable", student);
-
-                    rs1.close();
-                    intent = new Intent(LoginPage.this, MainPage.class);
-                    String s_email = rs1.getString("studentEmail");
-                    intent.putExtra("studentEmail", s_email);
-                }/*
-                queryCheck = "SELECT * FROM tutor WHERE tutorEmail = '" + params[0] +
-                        "' AND tutorPassword = '" + params[1] + "'";
-                stmt = null;
-                rs1.close();
-                rs2 = stmt.executeQuery(queryCheck);
-                if(!rs2.next()) {
-                    rs2.close();
-                    Tutor tutor = new Tutor(rs2.getInt("tutorID"), rs2.getString("tutorName"),
-                            rs2.getString("tutorEmail"), rs2.getString("tutorAddress"),
-                            rs2.getString("tutorSubject"), rs2.getString("tutorDescription"),
-                            rs2.getDouble("tutorRatePerHour"), rs2.getInt("tutortotalHours"));
-                    rs2.close();
-                    intent = new Intent(LoginPage.this, MainPage.class);
-                    intent.putExtra("tutorParcelable", tutor);
+                    return 0;
                 }
-
-                else {
-                    rs1.close();
-                    return -1;
-                }*/
+                rs.close();
+                queryCheck = "SELECT * FROM tutor where tutorEmail = '" + params[0] +
+                            "' AND tutorPassword = '" + params[1] + "'";
+                rs = stmt.executeQuery(queryCheck);
+                if (rs.next()) {
+                    Tutor tutor = new Tutor(rs.getInt("tutorID"), rs.getString("tutorName"),
+                            rs.getString("tutorEmail"), rs.getString("tutorAddress"),
+                            rs.getString("tutorSubjects"), rs.getString("tutorDescription"),
+                            rs.getDouble("tutorRatePerHour"), rs.getInt("tutortotalHours"));
+                    intent = new Intent(LoginPage.this, MainPage.class);
+                    extras = new Bundle();
+                    extras.putString("packtype", "tutor");
+                    extras.putParcelable("tutorPackage", tutor);
+                    intent.putExtras(extras);
+                    rs.close();
+                    return 0;
+                }
+                rs.close();
                 stmt.close();
                 conn.close();
                 return -1;
@@ -104,8 +92,9 @@ public class LoginPage extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Integer rawr) {
-            if (rawr == 0)
+            if (rawr == 0) {
                 startActivity(intent);
+            }
             else {
                 email.setText("");
                 pass.setText("");
