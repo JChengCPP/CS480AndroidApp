@@ -40,7 +40,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="45dp"
         android:layout_below="@+id/login2_button"
         android:layout_alignLeft="@+id/login2_button"
         android:layout_alignStart="@+id/login2_button"
@@ -55,6 +55,8 @@
             android:layout_centerHorizontal="true"
             android:textStyle="normal"
             android:textColor="#FF0000"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:text="Incorrect email or password"
+            android:singleLine="true" />
     </RelativeLayout>
 </RelativeLayout>

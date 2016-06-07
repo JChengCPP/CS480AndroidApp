@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Profile extends AppCompatActivity {
-    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb_test";
+    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb";
     private static final String USER = "TeamAvatar";
     private static final String PASS = "Ie5Jaxae";
     private EditText status;
@@ -57,14 +57,14 @@ public class Profile extends AppCompatActivity {
         }
         else {
             TextView d = (TextView) findViewById(R.id.p_des_text_view);
-            d.setVisibility(View.GONE);
+            d.setVisibility(View.INVISIBLE);
             TextView r = (TextView) findViewById(R.id.p_rate_text_view);
-            r.setVisibility(View.GONE);
+            r.setVisibility(View.INVISIBLE);
             TextView h = (TextView) findViewById(R.id.p_th_text_view);
-            h.setVisibility(View.GONE);
-            description.setVisibility(View.GONE);
-            rate.setVisibility(View.GONE);
-            totalHours.setVisibility(View.GONE);
+            h.setVisibility(View.INVISIBLE);
+            description.setVisibility(View.INVISIBLE);
+            rate.setVisibility(View.INVISIBLE);
+            totalHours.setVisibility(View.INVISIBLE);
             status.setText("Student");
             student = pack.getParcelable("studentPackage");
             name.setText(student.getName());
@@ -72,6 +72,22 @@ public class Profile extends AppCompatActivity {
             address.setText(student.getAddress());
             subject.setText(student.getSubject());
         }
+    }
+
+    public void onBackClick(View view) {
+        intent = new Intent(Profile.this, MainPage.class);
+        extras = new Bundle();
+        if (packType.charAt(0) == 't') {
+            extras.putString("packtype", packType);
+            extras.putParcelable("tutorPackage", tutor);
+            intent.putExtras(extras);
+        }
+        else {
+            extras.putString("packtype", packType);
+            extras.putParcelable("studentPackage", student);
+            intent.putExtras(extras);
+        }
+        startActivity(intent);
     }
 
     public void onSaveEditClick(View view) {
@@ -87,59 +103,59 @@ public class Profile extends AppCompatActivity {
         extras = new Bundle();
         switch (packType) {
             case "tutor":
-                if (saveName.getText() != null) {
+                if (!saveName.getText().toString().equals("")) {
                     name.setText(saveName.getText().toString());
                     tutor.setName(saveName.getText().toString());
                 }
-                else if (saveName.getText() == null) {
+                else if (saveName.getText().toString().equals("")) {
                     name.setText("");
                     tutor.setName("");
                 }
-                if (saveEmail.getText() != null) {
+                if (!saveEmail.getText().toString().equals("")) {
                     email.setText(saveEmail.getText().toString());
                     tutor.setEmail(saveEmail.getText().toString());
                 }
-                else if (saveEmail.getText() == null) {
+                else if (saveEmail.getText().toString().equals("")) {
                     email.setText("");
                     tutor.setEmail("");
                 }
-                if (saveAddress.getText() != null) {
+                if (!saveAddress.getText().toString().equals("")) {
                     address.setText(saveAddress.getText().toString());
                     tutor.setAddress(saveAddress.getText().toString());
                 }
-                else if (saveAddress.getText() == null) {
+                else if (saveAddress.getText().toString().equals("")) {
                     address.setText("");
                     tutor.setAddress("");
                 }
-                if (saveSubject.getText() != null) {
+                if (!saveSubject.getText().toString().equals("")) {
                     subject.setText(saveSubject.getText().toString());
                     tutor.setSubject(saveSubject.getText().toString());
                 }
-                else if (saveSubject.getText() == null) {
+                else if (saveSubject.getText().toString().equals("")) {
                     subject.setText("");
                     tutor.setSubject("");
                 }
-                if (saveDescription.getText() != null) {
+                if (!saveDescription.getText().toString().equals("")) {
                     description.setText(saveDescription.getText().toString());
                     tutor.setDescription(saveDescription.getText().toString());
                 }
-                else if (saveDescription.getText() == null) {
+                else if (saveDescription.getText().toString().equals("")) {
                     description.setText("");
                     tutor.setDescription("");
                 }
-                if (saveRate.getText() != null) {
+                if (!saveRate.getText().toString().equals("")) {
                     rate.setText(saveRate.getText().toString());
                     tutor.setRate(Double.parseDouble(saveRate.getText().toString()));
                 }
-                else if (saveRate.getText() == null) {
+                else if (saveRate.getText().toString().equals("")) {
                     rate.setText("0.0");
                     tutor.setRate(0.0);
                 }
-                if (saveHours.getText() != null) {
+                if (!saveHours.getText().toString().equals("")) {
                     totalHours.setText(saveHours.getText().toString());
                     tutor.setHours(Integer.parseInt(saveHours.getText().toString()));
                 }
-                else if (saveAddress.getText() == null) {
+                else if (saveHours.getText().toString().equals("")) {
                     totalHours.setText("0");
                     tutor.setHours(0);
                 }
@@ -158,35 +174,35 @@ public class Profile extends AppCompatActivity {
                 new SaveEdit().execute(paramToSaveEdit);
                 break;
             case "student":
-                if (saveName.getText() != null) {
+                if (!saveName.getText().toString().equals("")) {
                     name.setText(saveName.getText().toString());
                     student.setName(saveName.getText().toString());
                 }
-                else if (saveName.getText() == null) {
+                else if (saveName.getText().toString().equals("")) {
                     name.setText("");
                     student.setName("");
                 }
-                if (saveEmail.getText() != null) {
+                if (!saveEmail.getText().toString().equals("")) {
                     email.setText(saveEmail.getText().toString());
                     student.setEmail(saveEmail.getText().toString());
                 }
-                else if (saveEmail.getText() == null) {
+                else if (saveEmail.getText().toString().equals("")) {
                     email.setText("");
                     student.setEmail("");
                 }
-                if (saveAddress.getText() != null) {
+                if (!saveAddress.getText().toString().equals("")) {
                     address.setText(saveAddress.getText().toString());
                     student.setAddress(saveAddress.getText().toString());
                 }
-                else if (saveAddress.getText() == null) {
+                else if (saveAddress.getText().toString().equals("")) {
                     address.setText("");
                     student.setAddress("");
                 }
-                if (saveSubject.getText() != null) {
+                if (!saveSubject.getText().toString().equals("")) {
                     subject.setText(saveSubject.getText().toString());
                     student.setSubject(saveSubject.getText().toString());
                 }
-                else if (saveSubject.getText() == null) {
+                else if (saveSubject.getText().toString().equals("")) {
                     subject.setText("");
                     student.setSubject("");
                 }
@@ -201,23 +217,6 @@ public class Profile extends AppCompatActivity {
                 paramToSaveEdit[4] = subject.getText().toString();
                 new SaveEdit().execute(paramToSaveEdit);
                 break;
-        }
-    }
-
-    public void onMainMenuClick(View view) {
-        intent = new Intent(Profile.this, MainPage.class);
-        extras = new Bundle();
-        if (packType.charAt(0) == 't') {
-            extras.putString("packtype", packType);
-            extras.putParcelable("tutorPackage", tutor);
-            intent.putExtras(extras);
-            startActivity(intent);
-        }
-        else {
-            extras.putString("packtype", packType);
-            extras.putParcelable("studentPackage", student);
-            intent.putExtras(extras);
-            startActivity(intent);
         }
     }
 
@@ -258,7 +257,7 @@ public class Profile extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Integer rawr) {
+        protected void onPostExecute(Integer result) {
             startActivity(intent);
         }
     }

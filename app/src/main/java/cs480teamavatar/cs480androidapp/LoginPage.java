@@ -10,7 +10,7 @@ import android.content.Intent;
 import java.sql.*;
 
 public class LoginPage extends AppCompatActivity {
-    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb_test";
+    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb";
     private static final String USER = "TeamAvatar";
     private static final String PASS = "Ie5Jaxae";
     private EditText email;
@@ -23,6 +23,8 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        textOut = (TextView) findViewById(R.id.login_text_view);
+        textOut.setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View view) {
@@ -33,7 +35,6 @@ public class LoginPage extends AppCompatActivity {
         String[] storage = new String[2];
         storage[0] = username;
         storage[1] = password;
-        textOut = (TextView) findViewById(R.id.login_text_view);
         new LoginUser().execute(storage);
     }
 
@@ -91,14 +92,14 @@ public class LoginPage extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Integer rawr) {
-            if (rawr == 0) {
+        protected void onPostExecute(Integer result) {
+            if (result == 0) {
                 startActivity(intent);
             }
             else {
                 email.setText("");
                 pass.setText("");
-                textOut.setText("Incorrect email or password");
+                textOut.setVisibility(View.VISIBLE);
             }
         }
     }

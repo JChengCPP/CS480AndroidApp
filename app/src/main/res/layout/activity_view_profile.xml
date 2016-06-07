@@ -87,7 +87,8 @@
         android:id="@+id/vp_status_text_view"
         android:layout_alignBottom="@+id/textView2"
         android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2" />
+        android:layout_toEndOf="@+id/textView2"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -95,7 +96,8 @@
         android:id="@+id/vp_name_text_view"
         android:layout_alignTop="@+id/textView5"
         android:layout_toRightOf="@+id/textView5"
-        android:layout_toEndOf="@+id/textView5" />
+        android:layout_toEndOf="@+id/textView5"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -103,7 +105,8 @@
         android:id="@+id/vp_email_text_view"
         android:layout_below="@+id/vp_name_text_view"
         android:layout_alignRight="@+id/vp_name_text_view"
-        android:layout_alignEnd="@+id/vp_name_text_view" />
+        android:layout_alignEnd="@+id/vp_name_text_view"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -111,7 +114,8 @@
         android:id="@+id/vp_address_text_view"
         android:layout_below="@+id/vp_email_text_view"
         android:layout_alignRight="@+id/vp_email_text_view"
-        android:layout_alignEnd="@+id/vp_email_text_view" />
+        android:layout_alignEnd="@+id/vp_email_text_view"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -119,7 +123,8 @@
         android:id="@+id/vp_subject_text_view"
         android:layout_below="@+id/vp_address_text_view"
         android:layout_alignRight="@+id/vp_address_text_view"
-        android:layout_alignEnd="@+id/vp_address_text_view" />
+        android:layout_alignEnd="@+id/vp_address_text_view"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -127,7 +132,8 @@
         android:id="@+id/vp_description_text_view"
         android:layout_below="@+id/vp_subject_text_view"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -135,7 +141,8 @@
         android:id="@+id/vp_rate_text_view"
         android:layout_below="@+id/vp_description_text_view"
         android:layout_alignRight="@+id/vp_subject_text_view"
-        android:layout_alignEnd="@+id/vp_subject_text_view" />
+        android:layout_alignEnd="@+id/vp_subject_text_view"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="265dp"
@@ -143,27 +150,7 @@
         android:id="@+id/vp_hours_text_view"
         android:layout_alignBottom="@+id/vpl_hours_text_view"
         android:layout_alignRight="@+id/vp_rate_text_view"
-        android:layout_alignEnd="@+id/vp_rate_text_view" />
+        android:layout_alignEnd="@+id/vp_rate_text_view"
+        android:textAlignment="center" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/back_to_list_button"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/vp_description_text_view"
-        android:layout_toStartOf="@+id/vp_description_text_view"
-        android:onClick="onBackClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:id="@+id/back_to_main_button"
-        android:layout_alignTop="@+id/back_to_list_button"
-        android:layout_toRightOf="@+id/back_to_list_button"
-        android:layout_toEndOf="@+id/back_to_list_button"
-        android:layout_marginLeft="151dp"
-        android:layout_marginStart="151dp"
-        android:onClick="onMainMenuClick" />
 </RelativeLayout>

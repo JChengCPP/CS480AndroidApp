@@ -20,11 +20,12 @@
         </activity>
         <activity android:name=".LoginPage" />
         <activity android:name=".RegisterPage" />
-        <activity android:name=".MainPage" />
+        <activity android:name=".MainPage"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".ViewProfile" />
         <activity android:name=".Session" />
-        <activity android:name=".TutorList"></activity>
+        <activity android:name=".TutorList" />
+        <activity android:name=".SetAppointment"></activity>
     </application>
 
 </manifest>

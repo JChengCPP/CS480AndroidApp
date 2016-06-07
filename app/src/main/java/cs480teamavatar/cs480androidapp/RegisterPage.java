@@ -13,7 +13,7 @@ import java.sql.*;
 
 
 public class RegisterPage extends AppCompatActivity {
-    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb_test";
+    private static final String URL = "jdbc:mysql://db.zer0-one.net/tutorWeb";
     private static final String USER = "TeamAvatar";
     private static final String PASS = "Ie5Jaxae";
     private static RadioGroup radioGroup;
@@ -27,6 +27,8 @@ public class RegisterPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
+        textOut = (TextView) findViewById(R.id.register_text_view);
+        textOut.setVisibility(View.INVISIBLE);
     }
 
     public void onClick(View view) {
@@ -45,7 +47,6 @@ public class RegisterPage extends AppCompatActivity {
         storage[1] = password;
         storage[2] = radio;
         storage[3] = name;
-        textOut = (TextView) findViewById(R.id.register_text_view);
         new RegisterUser().execute(storage);
     }
 
@@ -101,7 +102,7 @@ public class RegisterPage extends AppCompatActivity {
                 email.setText("");
                 pass.setText("");
                 n.setText("");
-                textOut.setText("Email already exists.");
+                textOut.setVisibility(View.VISIBLE);
             }
         }
     }

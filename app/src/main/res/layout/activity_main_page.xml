@@ -30,19 +30,6 @@
         android:layout_alignParentStart="true"
         android:onClick="onSessionClick" />
 
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/profile_button"
-        android:layout_alignEnd="@+id/profile_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:title="Search subjects"
-        app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.support.v7.widget.SearchView"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,5 +39,33 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:onClick="onLogoutClick" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/search_edit_text"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="search"
+        android:id="@+id/search_button"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignStart="@+id/button"
+        android:onClick="onSearchClick"/>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:id="@+id/invalid_search_text"
+        android:layout_below="@+id/search_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Subject does not exist. Try again."
+        android:textColor="#FF0000" />
 
 </RelativeLayout>

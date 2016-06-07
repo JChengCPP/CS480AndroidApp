@@ -80,18 +80,7 @@
         android:id="@+id/sp_saveEdit_button"
         android:onClick="onSaveEditClick"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/total_hours_edit_text"
         android:layout_alignEnd="@+id/total_hours_edit_text" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:id="@+id/sp_main_menu_button"
-        android:onClick="onMainMenuClick"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="85dp"
@@ -101,9 +90,6 @@
         android:layout_toLeftOf="@+id/p_status_edit_text"
         android:layout_toStartOf="@+id/p_status_edit_text"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="#000000"
         android:id="@+id/p_status_text_view" />
 
     <TextView
@@ -111,9 +97,6 @@
         android:layout_height="45dp"
         android:text="Name:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="#000000"
         android:layout_below="@+id/p_status_edit_text"
         android:id="@+id/textView3" />
 
@@ -122,9 +105,6 @@
         android:layout_height="45dp"
         android:text="Email:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="#000000"
         android:layout_above="@+id/address_edit_text"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -134,9 +114,6 @@
         android:layout_height="45dp"
         android:text="Address:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#000000"
         android:layout_below="@+id/email_edit_text"
         android:layout_toLeftOf="@+id/email_edit_text"
         android:layout_toStartOf="@+id/email_edit_text"
@@ -147,9 +124,6 @@
         android:layout_height="45dp"
         android:text="Subject:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#000000"
         android:layout_below="@+id/address_edit_text"
         android:textIsSelectable="false"
         android:id="@+id/textView6" />
@@ -159,23 +133,17 @@
         android:layout_height="45dp"
         android:text="Description:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textColor="#000000"
         android:textIsSelectable="false"
         android:id="@+id/p_des_text_view"
         android:layout_below="@+id/subject_edit_text"
         android:layout_toLeftOf="@+id/address_edit_text"
-        android:layout_toStartOf="@+id/address_edit_text"
-        android:textSize="10dp" />
+        android:layout_toStartOf="@+id/address_edit_text" />
 
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
         android:text="Rate:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#000000"
         android:textIsSelectable="false"
         android:id="@+id/p_rate_text_view"
         android:layout_below="@+id/p_des_text_view"
@@ -187,13 +155,20 @@
         android:layout_height="45dp"
         android:text="Total Hours:"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="10dp"
-        android:textColor="#000000"
         android:textIsSelectable="false"
         android:id="@+id/p_th_text_view"
         android:layout_below="@+id/p_rate_text_view"
         android:layout_alignRight="@+id/p_rate_text_view"
         android:layout_alignEnd="@+id/p_rate_text_view" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:id="@+id/back_profile_button"
+        android:layout_alignBottom="@+id/sp_saveEdit_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onBackClick"/>
 
 </RelativeLayout>
