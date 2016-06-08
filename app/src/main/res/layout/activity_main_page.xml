@@ -30,7 +30,7 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:backgroundTint="#000"
+        android:background="#000"
         android:layout_below="@+id/invalid_search_text"
         android:layout_centerHorizontal="true" />
 
@@ -43,7 +43,7 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:backgroundTint="#000000"
+        android:background="#000"
         android:layout_below="@+id/profile_button"
         android:layout_alignLeft="@+id/profile_button"
         android:layout_alignStart="@+id/profile_button" />
@@ -51,13 +51,13 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:text="LOGOUT"
-        android:id="@+id/button"
-        android:onClick="onLogoutClick"
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:backgroundTint="#000000"
+        android:background="#000"
+        android:text="LOGOUT"
+        android:id="@+id/button"
+        android:onClick="onLogoutClick"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/profile_button"
         android:layout_alignStart="@+id/profile_button" />
@@ -71,6 +71,7 @@
         android:layout_alignParentStart="true"
         android:textSize="20dp"
         android:textColor="#000"
+        android:background="#fff"
         android:backgroundTint="#cdffffff"
         android:layout_toLeftOf="@+id/search_button"
         android:layout_toStartOf="@+id/search_button" />
@@ -84,7 +85,7 @@
         android:textSize="10dp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:backgroundTint="#000000"
+        android:background="#000"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
