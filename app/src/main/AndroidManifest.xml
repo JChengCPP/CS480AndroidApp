@@ -11,21 +11,37 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".StartUp"
-            android:label="Team Avatar&apos;s Tutor App">
+            android:label="Team Avatar Tutor App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginPage" />
-        <activity android:name=".RegisterPage" />
-        <activity android:name=".MainPage"></activity>
-        <activity android:name=".Profile" />
-        <activity android:name=".ViewProfile" />
-        <activity android:name=".Session" />
-        <activity android:name=".TutorList" />
-        <activity android:name=".SetAppointment"></activity>
+        <activity
+            android:name=".LoginPage"
+            android:label=""/>
+        <activity
+            android:name=".RegisterPage"
+            android:label=""/>
+        <activity
+            android:name=".MainPage"
+            android:label=""/>
+        <activity
+            android:name=".Profile"
+            android:label=""/>
+        <activity
+            android:name=".ViewProfile"
+            android:label=""/>
+        <activity
+            android:name=".Session"
+            android:label=""/>
+        <activity
+            android:name=".TutorList"
+            android:label=""/>
+        <activity
+            android:name=".SetAppointment"
+            android:label=""/>
     </application>
 
 </manifest>

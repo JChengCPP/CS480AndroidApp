@@ -7,11 +7,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ViewProfile">
+    android:background="#3eaddd">
 
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Status:"
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
@@ -21,6 +24,9 @@
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Name:"
         android:id="@+id/textView5"
         android:layout_below="@+id/textView2"
@@ -30,6 +36,9 @@
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Email:"
         android:id="@+id/textView7"
         android:layout_below="@+id/textView5"
@@ -39,6 +48,9 @@
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Address:"
         android:id="@+id/textView8"
         android:layout_below="@+id/textView7"
@@ -48,6 +60,9 @@
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Subjects:"
         android:id="@+id/textView9"
         android:layout_below="@+id/textView8"
@@ -57,24 +72,33 @@
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Description:"
         android:id="@+id/vpl_description_text_view"
         android:layout_above="@+id/vp_rate_text_view"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView9" />
 
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Rate:"
         android:id="@+id/vpl_rate_text_view"
         android:layout_below="@+id/vpl_description_text_view"
-        android:layout_alignRight="@+id/vpl_description_text_view"
-        android:layout_alignEnd="@+id/vpl_description_text_view" />
+        android:layout_alignParentStart="false" />
 
     <TextView
         android:layout_width="85dp"
         android:layout_height="45dp"
+        android:textSize="15dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Total Hours:"
         android:id="@+id/vpl_hours_text_view"
         android:layout_below="@+id/vpl_rate_text_view"
@@ -128,7 +152,7 @@
 
     <TextView
         android:layout_width="265dp"
-        android:layout_height="45dp"
+        android:layout_height="90dp"
         android:id="@+id/vp_description_text_view"
         android:layout_below="@+id/vp_subject_text_view"
         android:layout_alignParentRight="true"
